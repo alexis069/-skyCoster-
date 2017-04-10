@@ -11,7 +11,7 @@ demo.state0 = function () {};
 demo.state0.prototype = {
 	preload: function(){
 		game.load.image('clouds', 'assets/sunsetTrees.png'); //this is where we load the BG image
-		//game.load.spritesheet('adam', 'assets/adamSpritesheet.png', 240, 370);
+		game.load.spritesheet('mason', 'assets/masonwalkingpiskel.png', 240, 370);
 
 	},
 
@@ -21,7 +21,7 @@ demo.state0.prototype = {
         game.physics.startSystem(Phaser.Physics.ARCADE);
 		
        var cloud = game.add.sprite(0, 0, 'clouds');//this is where we add the image
-	//adam = game.add.sprite(0, 450, 'adam');
+	mason = game.add.sprite(0, 450, 'mason');
  	
        //game.physics.enable(adam);
         
@@ -70,7 +70,7 @@ demo.state0.prototype = {
         
 //  Lets adam jump at a specific speed
         //if (cursors.up.isDown){
-        //adam.body.velocity.y = -200;
+        //adam.body.velocity.y = 200;
         //}
 	}
 
