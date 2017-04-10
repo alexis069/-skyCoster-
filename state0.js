@@ -23,17 +23,17 @@ demo.state0.prototype = {
        var cloud = game.add.sprite(0, 0, 'clouds');//this is where we add the image
 	mason = game.add.sprite(0, 450, 'mason');
  	
-       //game.physics.enable(adam);
+       game.physics.enable(mason);
         
-//       adding gravity to adam
-        //adam.body.gravity.y = 600;
+ //     adding gravity to adam
+        mason.body.gravity.y = 600;
 
         
-        //adam.body.collideWorldBounds = true;
+        mason.body.collideWorldBounds = true;
         
-        //adam.scale.setTo(0.7, 0.7);
+        mason.scale.setTo(0.7, 0.7);
         
-        //adam.animations.add('walk', [0,1,2,3,4]);
+        mason.animations.add('walk', [0,1,2,3,4,5,6]);
         
        // creating cursor keys: lets you press buttons for your avatar to move
         cursors = game.input.keyboard.createCursorKeys();
@@ -44,12 +44,12 @@ demo.state0.prototype = {
 	update: function(){
         
 //   updated these if statements
-        //if (cursors.right.isDown){
+        if (cursors.right.isDown){
 //  changed how he moves to use physics
-             //adam.body.velocity.x = 150;
+             mason.body.velocity.x = 150;
 
-        //adam.animations.play('walk');
-		//}
+        mason.animations.play('walk');
+		}
         //else if(cursors.left.isDown){
             //  Move to the left
         //adam.body.velocity.x = -150;
