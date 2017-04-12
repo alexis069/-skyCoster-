@@ -50,28 +50,28 @@ demo.state0.prototype = {
 
         mason.animations.play('walk');
 		}
-        //else if(cursors.left.isDown){
+        else if(cursors.left.isDown){
             //  Move to the left
-        //adam.body.velocity.x = -150;
+        mason.body.velocity.x = -150;
 
-        //adam.animations.play('walk');
-        //}
+        mason.animations.play('walk');
+        }
         //else{
-            //adam.body.velocity.x = 0;
+            mason.body.velocity.x = 0;
             //  Stand still
-            //adam.animations.stop();
+            mason.animations.stop();
             
 // select which frame to use when I am not moving
-            //adam.frame = 0;
+            mason.frame = 0;
         //}
-        //if(cursors.down.isDown){
-        //adam.body.velocity.y = 200;
-        //}
+        if(cursors.down.isDown){
+        mason.body.velocity.y = 200;
+        }
         
 //  Lets adam jump at a specific speed
-        //if (cursors.up.isDown){
-        //adam.body.velocity.y = 200;
-        //}
+        if (cursors.up.isDown){
+        adam.body.velocity.y = 200;
+        }
 	}
 
 };
