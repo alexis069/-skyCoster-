@@ -1,6 +1,7 @@
 var demo = {}; 
 var speed = 6; 
-var adam;
+var mason;
+var woman;
 
 //create variable cursors
 var cursors;
@@ -11,8 +12,8 @@ demo.state0 = function () {};
 demo.state0.prototype = {
 	preload: function(){
 		game.load.image('clouds', 'assets/sunsetTrees.png'); //this is where we load the BG image
-		game.load.spritesheet('mason', 'assets/masonwalkingpiskel.png', 240, 370);
-
+		game.load.spritesheet('mason', 'assets/masonwalkingpiskel.png', 32, 32);
+        game.load.spritesheet('woman' , 'assets/woman_walking.png',32, 32)
 	},
 
 	create: function(){
@@ -21,17 +22,19 @@ demo.state0.prototype = {
         game.physics.startSystem(Phaser.Physics.ARCADE);
 		
        var cloud = game.add.sprite(0, 0, 'clouds');//this is where we add the image
-	mason = game.add.sprite(0, 450, 'mason');
+	mason = game.add.sprite(450, 450, 'mason');
+    woman walking = game.add.sprite(450, 450, 'women walking')
  	
        game.physics.enable(mason);
+        game.physics.enable(women walking)
         
  //     adding gravity to adam
-        mason.body.gravity.y = 600;
+        //mason.body.gravity.y = 600;
 
         
         mason.body.collideWorldBounds = true;
         
-        mason.scale.setTo(0.7, 0.7);
+        mason.scale.setTo(1.5, 1.5);
         
         mason.animations.add('walk', [0,1,2,3,4,5,6]);
         
@@ -56,21 +59,22 @@ demo.state0.prototype = {
 
         mason.animations.play('walk');
         }
-        //else{
+        else{
             mason.body.velocity.x = 0;
             //  Stand still
             mason.animations.stop();
-            
-// select which frame to use when I am not moving
+            // select which frame to use when I am not moving
             mason.frame = 0;
-        //}
+        }
         if(cursors.down.isDown){
-        mason.body.velocity.y = 200;
+            if(mason.y >= 100){
+            mason.body.velocity.y = 200;
+            }
         }
         
-//  Lets adam jump at a specific speed
+        //  Lets adam jump at a specific speed
         if (cursors.up.isDown){
-        adam.body.velocity.y = 200;
+            mason.body.velocity.y = -200;
         }
 	}
 
