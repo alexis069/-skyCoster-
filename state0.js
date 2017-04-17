@@ -1,7 +1,7 @@
 var demo = {}; 
 var speed = 6; 
 var mason;
-var woman;
+//var woman walking;
 
 //create variable cursors
 var cursors;
@@ -13,20 +13,20 @@ demo.state0.prototype = {
 	preload: function(){
 		game.load.image('clouds', 'assets/sunsetTrees.png'); //this is where we load the BG image
 		game.load.spritesheet('mason', 'assets/masonwalkingpiskel.png', 32, 32);
-        game.load.spritesheet('woman' , 'assets/woman_walking.png',32, 32)
+        //game.load.spritesheet('woman' , 'assets/woman_walking.png',32, 32)
 	},
 
 	create: function(){
-    game.world.setBounds(0,0, 2813,1000);
+    game.world.setBounds(0,0, 1000,600);
       //add physics to game
         game.physics.startSystem(Phaser.Physics.ARCADE);
 		
        var cloud = game.add.sprite(0, 0, 'clouds');//this is where we add the image
 	mason = game.add.sprite(450, 450, 'mason');
-    woman walking = game.add.sprite(450, 450, 'women walking')
+    //woman walking = game.add.sprite(450, 450, 'women walking')
  	
        game.physics.enable(mason);
-        game.physics.enable(women walking)
+        //game.physics.enable(women walking)
         
  //     adding gravity to adam
         //mason.body.gravity.y = 600;
