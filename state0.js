@@ -8,9 +8,12 @@ var cursors;
 
 demo.state0 = function () {};
 
+var text;
+var shellsCollected = 0;
 
 demo.state0.prototype = {
 	preload: function(){
+        game.load.image('shell', 'assets/orange_shell.png');
 		game.load.image('clouds', 'assets/grass.jpg'); //this is where we load the BG image
 		game.load.spritesheet('mason', 'assets/masonwalkingpiskel.png', 32, 32);
         //game.load.spritesheet('woman' , 'assets/woman_walking.png',32, 32)
@@ -37,14 +40,24 @@ demo.state0.prototype = {
         mason.scale.setTo(1.5, 1.5);
         
         mason.animations.add('walk', [0,1,2,3,4,5,6]);
+        group = game.add.physicsGroup();
+        for(i=0;i<20;i++){
+           group.create(game.rnd.between(10, 990), game.rnd.between(10, 590), 'shell');
         
-       // creating cursor keys: lets you press buttons for your avatar to move
+        }
+        
+
+        
+        // creating cursor keys: lets you press buttons for your avatar to move
         cursors = game.input.keyboard.createCursorKeys();
 
-
+        text = game.add.text(600, 10, "Shells Collected: "+shellsCollected);
 	},
 
 	update: function(){
+        game.physics.arcade.collide(mason, group, collisionHandler)
+                
+        text.setText("Shells Collected: "+shellsCollected);
         
 //   updated these if statements
         if (cursors.right.isDown){
@@ -54,6 +67,7 @@ demo.state0.prototype = {
         mason.animations.play('walk');
 		}
         else if(cursors.left.isDown){
+            
             //  Move to the left
         mason.body.velocity.x = -150;
 
@@ -98,3 +112,7 @@ demo.state0.prototype = {
 	}
 
 };
+collisionHandler = function (guy,shell){
+    shellsCollected += 1; 
+    shell.destroy();
+}
