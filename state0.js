@@ -11,7 +11,7 @@ demo.state0 = function () {};
 
 demo.state0.prototype = {
 	preload: function(){
-		game.load.image('clouds', 'assets/sunsetTrees.png'); //this is where we load the BG image
+		game.load.image('clouds', 'assets/grass.jpg'); //this is where we load the BG image
 		game.load.spritesheet('mason', 'assets/masonwalkingpiskel.png', 32, 32);
         //game.load.spritesheet('woman' , 'assets/woman_walking.png',32, 32)
 	},
@@ -66,15 +66,34 @@ demo.state0.prototype = {
             // select which frame to use when I am not moving
             mason.frame = 0;
         }
-        if(cursors.down.isDown){
-            if(mason.y >= 100){
-            mason.body.velocity.y = 200;
-            }
+//        if(cursors.down.isDown){
+//            if(mason.y >= 100){
+//            mason.body.velocity.y = 200;
+//            }
+//        }
+//        
+//        //  Lets adam jump at a specific speed
+//        if (cursors.up.isDown){
+//            mason.body.velocity.y = -200;
+//        }
+        if (cursors.down.isDown){
+//  changed how he moves to use physics
+             mason.body.velocity.y = 150;
+
+        mason.animations.play('walk');
+		}
+        else if(cursors.up.isDown){
+            //  Move to the left
+        mason.body.velocity.y = -150;
+
+        mason.animations.play('walk');
         }
-        
-        //  Lets adam jump at a specific speed
-        if (cursors.up.isDown){
-            mason.body.velocity.y = -200;
+        else{
+            mason.body.velocity.y = 0;
+            //  Stand still
+            mason.animations.stop();
+            // select which frame to use when I am not moving
+            mason.frame = 0;
         }
 	}
 
