@@ -13,13 +13,19 @@ var shellsCollected = 0;
 
 demo.state0.prototype = {
 	preload: function(){
-        game.load.image('shell', 'assets/orange_shell.png');
-		game.load.image('clouds', 'assets/grass.jpg'); //this is where we load the BG image
+        game.load.image('orange', 'assets/orange_shell.png');
+		game.load.image('clouds', 'assets/grass.jpg');
+        game.load.image('blue', 'assets/blue.shell.png');
+        game.load.image('purple','assets/purple.shell.png');
+        game.load.image('green', 'assets/green.shell.png');
+        game.load.image('yellow', 'assets/yellow.shell.png');
+        //this is where we load the BG image
 		game.load.spritesheet('mason', 'assets/masonwalkingpiskel.png', 32, 32);
         //game.load.spritesheet('woman' , 'assets/woman_walking.png',32, 32)
 	},
 
 	create: function(){
+        gameStartTime = new Date()
     game.world.setBounds(0,0, 1000,600);
       //add physics to game
         game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -42,9 +48,13 @@ demo.state0.prototype = {
         mason.animations.add('walk', [0,1,2,3,4,5,6]);
         group = game.add.physicsGroup();
         for(i=0;i<20;i++){
-           group.create(game.rnd.between(10, 990), game.rnd.between(10, 590), 'shell');
-        
-        }
+           group.create(game.rnd.between(10, 990), game.rnd.between(10, 590), 'orange');
+            group.create(game.rnd.between(10, 990), game.rnd.between(10, 590),'blue');
+            group.create(game.rnd.between(10, 990), game.rnd.between(10, 590), 'purple');
+            group.create(game.rnd.between(10, 990), game.rnd.between(10, 590), 'green');
+            group.create(game.rnd.between(10, 990), game.rnd.between(10, 590), 'yellow');
+             }
+        seaShells = 99
         
 
         
@@ -52,9 +62,18 @@ demo.state0.prototype = {
         cursors = game.input.keyboard.createCursorKeys();
 
         text = game.add.text(600, 10, "Shells Collected: "+shellsCollected);
+        timeText = game.add.text(600, 35, 'Score: 0')
 	},
 
 	update: function(){
+        
+        if (shellsCollected<seaShells){
+           var later = new Date()
+           var time=later-gameStartTime 
+            seconds= time / 1000
+            timeText.setText("Score: " +seconds)
+        }
+        
         game.physics.arcade.collide(mason, group, collisionHandler)
                 
         text.setText("Shells Collected: "+shellsCollected);
